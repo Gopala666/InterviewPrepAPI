@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const cors = require('cors');
 const { Configuration, OpenAIApi, default: OpenAI } = require('openai'); // Correct import statement
@@ -6,13 +7,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// // Initialize OpenAI API with your API key
-// const configuration = new Configuration({
-//   apiKey: 'YOUR_OPENAI_API_KEY', // Replace with your actual API key
-// });
-// const openai = new OpenAIApi(configuration);
+// Initialize OpenAI API with your API key
 const openai = new OpenAI({
-  apiKey: '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' // This is also the default and can be omitted
+  apiKey: process.env.API_KEY
 });
 
 // Endpoint to interact with ChatGPT
@@ -43,7 +40,7 @@ const userMessage = req.body.message;
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
