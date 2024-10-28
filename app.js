@@ -12,6 +12,9 @@ const openai = new OpenAI({
   apiKey: process.env.API_KEY
 });
 
+app.get('/test',async (req,res)=>{
+  res.status(200).json({ message: 'Launch Success.' });
+});
 // Endpoint to interact with ChatGPT
 app.post('/chatgpt', async (req, res) => {
 const userMessage = req.body.message;
